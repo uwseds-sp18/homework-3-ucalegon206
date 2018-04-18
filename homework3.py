@@ -1,14 +1,18 @@
+# File: homework3.py
+# Author: Andrew Smith
+# Date: 4/17/2018
+
 import sqlite3
 import pandas as pd
 import os.path
 
 
 def create_dataframe(db_path):
-    
+
     if not os.path.exists(db_path):
         raise ValueError('path to database not found')
 
-    conn = sqlite3.connect(database_name)
+    conn = sqlite3.connect(db_path)
     lang = ['us', 'gb', 'fr', 'de', 'ca']
     df = pd.DataFrame([])
     for l in lang:
@@ -17,3 +21,4 @@ def create_dataframe(db_path):
         df_new = pd.read_sql(sql, conn)
         df = pd.concat([df, df_new], axis=0)
     return df
+
