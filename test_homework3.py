@@ -25,4 +25,8 @@ class TestHomework3(unittest.TestCase):
         grouped = data.groupby(key)
         size = grouped.size().reset_index()
         self.assertGreater(len(size[size[0] > 1]), 0)
+        
+    def test_create_dataframe_num_rows(self):
+        data = hw.create_dataframe(self._db_path)
+        self.assertGreater(data.shape[0], 10)
 
